@@ -83,13 +83,3 @@ class Flow(BaseModel, Generic[T]):
 
     def get_current_processor(self) -> str:
         return self.current_processor or ""
-<<<<<<< Updated upstream
-
-    def get_processors(self):
-        return self._processors
-
-    def _set_current_processor(self, current_processor: str) -> False:
-        self.current_processor = current_processor
-        return False
-=======
->>>>>>> Stashed changes
