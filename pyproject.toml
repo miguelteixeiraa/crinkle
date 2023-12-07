@@ -13,6 +13,7 @@ packages = [
 python = "^3.11"
 pydantic = "^2.5.2"
 ruff = "^0.1.7"
+pytest = "^7.4.3"
 
 
 [build-system]

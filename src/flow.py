@@ -13,10 +13,8 @@ class Flow(BaseModel, Generic[T]):
     current_processor: Optional[str] = ""
     _processors: deque[Processor] = deque()
 
-    def __init__(
-        self, name: str, processors: Optional[List[Processor]] = None, **data: Any
-    ):
-        super().__init__(**data)
+    def __init__(self, name: str, processors: Optional[List[Processor]]):
+        super().__init__(name=name)
         if processors is None:
             processors = []
         self._processors.extend(processors)
@@ -47,6 +45,9 @@ class Flow(BaseModel, Generic[T]):
 
     def get_current_processor(self) -> str:
         return self.current_processor or ""
+
+    def get_processors(self):
+        return self._processors
 
     def _set_current_processor(self, current_processor: str) -> False:
         self.current_processor = current_processor

@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Callable, Optional
 from src.context import Context
 
@@ -19,5 +19,8 @@ class FunctionProcessor(Processor):
         self.func = func
         self.name = name
 
-    def process(self, context: Context) -> bool:
+    def process(
+        self,
+        context: Context,
+    ) -> bool:
         return self.func(context)
