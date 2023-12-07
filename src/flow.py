@@ -11,10 +11,9 @@ from collections import deque
 
 from src.context import Context
 from src.processor import (
-    Processor,
+    TypeFunctionProcessorAsync,
     TypeFunctionProcessor,
     FunctionProcessor,
-    TypeFunctionProcessorAsync,
     FunctionProcessorAsync,
     AbstractProcessorBase,
 )
@@ -62,8 +61,7 @@ class Flow(BaseModel, Generic[T]):
     def execute(self, context: Context):
         loop = asyncio.get_event_loop()
         if any(
-            self._set_current_processor(processor.name)
-            or self._run_procssor(func=processor, context=context)
+            self._run_procssor(func=processor, context=context)
             for processor in self._processors
         ):
             return
@@ -71,6 +69,7 @@ class Flow(BaseModel, Generic[T]):
     def _run_processor(
         self, context: Context, func: FunctionProcessorAsync | FunctionProcessor
     ):
+        self.current_processor = func.name
         if not (asyncio.iscoroutinefunction(func.process)):
             return func.process(context=context)
 
@@ -84,6 +83,7 @@ class Flow(BaseModel, Generic[T]):
 
     def get_current_processor(self) -> str:
         return self.current_processor or ""
+<<<<<<< Updated upstream
 
     def get_processors(self):
         return self._processors
@@ -91,3 +91,5 @@ class Flow(BaseModel, Generic[T]):
     def _set_current_processor(self, current_processor: str) -> False:
         self.current_processor = current_processor
         return False
+=======
+>>>>>>> Stashed changes
