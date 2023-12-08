@@ -21,7 +21,7 @@ context = Context[Order, Dict](
     additional_data=additional_data  # Optional
 )
 
-flow = Flow(flow_name="Promotions/Discounts Flow")  # Corrected the keyword name
+flow = Flow(flow_name="Promotions/Discounts Flow")
 
 @flow.processor(name="Manufacturer Discounts Processor")
 def manufacturer_discounts_processor(context: Context[Order, Dict]) -> bool:
