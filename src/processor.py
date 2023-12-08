@@ -9,13 +9,13 @@ from typing import (
 
 from src.context import Context
 
-ContextSpec: TypeAlias = ParamSpec("ContextSpec", bound=Context)
+ContextSpec: TypeAlias = ParamSpec('ContextSpec', bound=Context)
 TypeFunctionProcessor: TypeAlias = Callable[[ContextSpec], bool]
 TypeFunctionProcessorAsync: TypeAlias = Callable[[ContextSpec], Awaitable[bool]]
 
 
 class AbstractProcessorBase(ABC):
-    name: Optional[str] = ""
+    name: Optional[str] = ''
 
     @abstractmethod
     def process(self, context: ContextSpec) -> bool:
@@ -33,7 +33,7 @@ class ProcessorAsync(AbstractProcessorBase):
 
 
 class FunctionProcessor(Processor):
-    def __init__(self, func: TypeFunctionProcessor, name: Optional[str] = ""):
+    def __init__(self, func: TypeFunctionProcessor, name: Optional[str] = ''):
         self.func = func
         self.name = name
 
@@ -45,7 +45,7 @@ class FunctionProcessor(Processor):
 
 
 class FunctionProcessorAsync(ProcessorAsync):
-    def __init__(self, func: TypeFunctionProcessorAsync, name: Optional[str] = ""):
+    def __init__(self, func: TypeFunctionProcessorAsync, name: Optional[str] = ''):
         self.func = func
         self.name = name
 

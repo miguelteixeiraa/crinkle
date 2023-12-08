@@ -20,7 +20,7 @@ from src.processor import (
 
 class Flow(BaseModel):
     name: str
-    current_processor: Optional[str] = ""
+    current_processor: Optional[str] = ''
     _processors: deque[AbstractProcessorBase] = deque()
 
     def __init__(
@@ -34,7 +34,7 @@ class Flow(BaseModel):
             not isinstance(processor, AbstractProcessorBase) for processor in processors
         ):
             raise ValueError(
-                "Invalid processors iterable. Must be instance of AbstractProcessorBase"
+                'Invalid processors iterable. Must be instance of AbstractProcessorBase'
             )
         self._processors.extend(processors)
         self._name = name
@@ -42,7 +42,7 @@ class Flow(BaseModel):
     def add_processor(self, processor: AbstractProcessorBase) -> None:
         if not isinstance(processor, AbstractProcessorBase):
             raise TypeError(
-                f"Invalid processor type: {type(processor)}. Expected inheritance from Processor."
+                f'Invalid processor type: {type(processor)}. Expected inheritance from Processor.'
             )
         self._processors.append(processor)
 
@@ -66,7 +66,7 @@ class Flow(BaseModel):
 
         return decorator
 
-    def execute(self, context: Context):
+    def execute(self, context: Context) -> None:
         if any(
             self._run_processor(func=processor, context=context)
             for processor in self._processors
@@ -91,7 +91,7 @@ class Flow(BaseModel):
         return result
 
     def get_current_processor(self) -> str:
-        return self.current_processor or ""
+        return self.current_processor or ''
 
     def get_processors(self) -> deque:
         return self._processors

@@ -1,0 +1,16 @@
+[lint]
+# see https://docs.astral.sh/ruff/rules
+select = ["E4", "E7", "E9", "F", "B", "ANN001", "ANN201", "ANN206"]
+ignore = ["E501"]
+fixable = ["ALL"]
+
+[lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"test_*" = ["E402", "ANN001", "ANN201", "ANN206"]
+"conftest.py" = ["E402", "ANN001", "ANN201", "ANN206"]
+
+[format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

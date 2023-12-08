@@ -2,8 +2,8 @@ from typing import Generic, Optional, TypeVar, TypeAlias
 
 from pydantic import BaseModel
 
-T = TypeVar("T")
-D = TypeVar("D")
+T = TypeVar('T')
+D = TypeVar('D')
 
 
 class Context(BaseModel, Generic[T, D]):
