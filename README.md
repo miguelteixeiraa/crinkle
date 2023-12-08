@@ -1,7 +1,7 @@
 <p align="center">
 <img src="./assets/crinkle.png" alt="Crinkle Icon" width=70>
 <h3 align="center">Crinkle</h3>
-<p align="center"><strong>Crinkle</strong> is a framework for organizing the execution of complex processing flows by implementing the “Chain of Responsability” pattern (:battery: included).</p>
+<p align="center"><strong>Crinkle</strong> is a framework for organizing the execution of complex processing flows by implementing the “Chain of Responsability” pattern (🔋included).</p>
 </p>
 
 **Merchan**:
