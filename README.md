@@ -4,6 +4,14 @@
 <p align="center"><strong>Crinkle</strong> is a framework for organizing the execution of complex processing flows by implementing the “Chain of Responsability” pattern (🔋included).</p>
 </p>
 
+<p align="center">
+  <a href="https://securityscorecards.dev/viewer/?uri=github.com/miguelteixeiraa/crinkle">
+    <img src="https://api.securityscorecards.dev/projects/github.com/miguelteixeiraa/crinkle/badge" alt="OpenSSF Scorecard">
+  </a>
+  <img src="https://github.com/miguelteixeiraa/crinkle/actions/workflows/lint-and-format.yaml/badge.svg" alt="Lint and Format">
+  <img src="https://github.com/miguelteixeiraa/crinkle/actions/workflows/tests.yaml/badge.svg" alt="Tests">
+</p>
+
 **Merchan**:
 
 - **Minimalist**: Translate complex computational requirements into simple, yet elegant. _and less_ code.
