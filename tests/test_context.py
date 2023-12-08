@@ -2,7 +2,7 @@ from typing import Dict
 
 import pytest
 from pydantic import BaseModel
-from src.context import Context
+from crinkle import Context
 
 
 def test_context_generics_case1():

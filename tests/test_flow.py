@@ -2,14 +2,12 @@ from collections import deque
 
 import pytest
 
-from src.context import Context
-from src.flow import Flow
-from src.processor import Processor
+from crinkle import Flow, Context, ProcessorBase
 
 
 @pytest.fixture
 def dummy_processor():
-    class DummyProcessor(Processor):
+    class DummyProcessor(ProcessorBase):
         def process(self, context: Context) -> bool:
             return True
 
@@ -45,7 +43,7 @@ def test_flow_constructor_with_invalid_processors():
 def test_flow_add_processor_should_add_processor_to_flow():
     flow = Flow(name='Dummy')
 
-    class DummyProcessor(Processor):
+    class DummyProcessor(ProcessorBase):
         def process(self, context: Context) -> bool:
             return True
 

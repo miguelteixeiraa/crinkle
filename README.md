@@ -1,13 +1,13 @@
 # Crinkle
 
-**Crinkle** is a framework for organizing the execution of complex processing flows by implementing the “Chain of Responsability” pattern (batteries included :battery:).
+**Crinkle** is a framework for organizing the execution of complex processing flows by implementing the “Chain of Responsability” pattern (:battery: included).
 
 **Merchan**:
 
 - **Minimalist**: Translate complex computational requirements into simple, yet elegant. _and less_ code.
 - **Grow large**: Grow large while keep everything maintainable and fast
-- **Empower testability**: Make things more testable by breaking large processes into small, specialized pieces with composition
-- **Opinionated**: yet, intuitive to write.
+- **Empower testability**: Make things more testable by breaking large processes into small, specialized pieces with composition.
+- **Opinionated Yet Intuitive**: Quickly understand and work with.
 
 ---
 
@@ -93,7 +93,7 @@ Crinkle has flavors for all tastes! OOP is also supported, see example:
 
 ```Python hl_lines="15-18"
 from typing import Dict, List
-from crinkle import ProcessorBase, flow, Context
+from crinkle import ProcessorBase, ProcessorBaseAsync, flow, Context
 
 
 class Order(BaseModel):
@@ -129,7 +129,7 @@ class ManufacturerCouponsProcessor(ProcessorBase):
         return False  # Go to next processor
 
 
-class BOGOProcessor(ProcessorBase):
+class BOGOProcessor(ProcessorBaseAsync):
     def __init__(self, name: str):
         self.name = name
 

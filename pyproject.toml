@@ -6,7 +6,7 @@ authors = ["Miguel Teixeira <miguel.teixeira@poli.ufrj.br>"]
 license = "MIT"
 readme = "README.md"
 packages = [
-    { include = "src" }
+    { include = "crinkle" }
 ]
 
 [tool.poetry.dependencies]

@@ -1,4 +1,4 @@
-from typing import Generic, Optional, TypeVar, TypeAlias
+from typing import Generic, Optional, TypeVar
 
 from pydantic import BaseModel
 
@@ -12,6 +12,3 @@ class Context(BaseModel, Generic[T, D]):
 
     def __init__(self, initial_state: T, additional_data: Optional[D]):
         super().__init__(state=initial_state, additional_data=additional_data)
-
-
-ContextType: TypeAlias = Context[T, D]

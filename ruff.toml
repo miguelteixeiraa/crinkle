@@ -5,7 +5,7 @@ ignore = ["E501"]
 fixable = ["ALL"]
 
 [lint.per-file-ignores]
-"__init__.py" = ["E402"]
+"__init__.py" = ["E402", "F401"]
 "test_*" = ["E402", "ANN001", "ANN201", "ANN206"]
 "conftest.py" = ["E402", "ANN001", "ANN201", "ANN206"]
 

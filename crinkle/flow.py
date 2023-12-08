@@ -8,8 +8,8 @@ from typing import (
 from pydantic import BaseModel
 from collections import deque
 
-from src.context import Context
-from src.processor import (
+from crinkle.context import Context
+from crinkle.processor import (
     TypeFunctionProcessorAsync,
     TypeFunctionProcessor,
     FunctionProcessor,

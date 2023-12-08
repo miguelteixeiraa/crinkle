@@ -7,7 +7,7 @@ from typing import (
     ParamSpec,
 )
 
-from src.context import Context
+from crinkle.context import Context
 
 ContextSpec: TypeAlias = ParamSpec('ContextSpec', bound=Context)
 TypeFunctionProcessor: TypeAlias = Callable[[ContextSpec], bool]
@@ -22,7 +22,7 @@ class ProcessorBase(ABC):
         pass
 
 
-class ProcessorAsync(ProcessorBase):
+class ProcessorBaseAsync(ProcessorBase):
     @abstractmethod
     async def process(self, context: ContextSpec) -> bool:
         pass
@@ -40,7 +40,7 @@ class FunctionProcessor(ProcessorBase):
         return self.func(context)
 
 
-class FunctionProcessorAsync(ProcessorAsync):
+class FunctionProcessorAsync(ProcessorBaseAsync):
     def __init__(self, func: TypeFunctionProcessorAsync, name: Optional[str] = ''):
         self.func = func
         self.name = name
