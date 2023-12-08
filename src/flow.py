@@ -1,10 +1,9 @@
 import asyncio
 from typing import (
-    Generic,
-    TypeVar,
     List,
     Optional,
     Callable,
+    Union,
 )
 from pydantic import BaseModel
 from collections import deque
@@ -18,18 +17,25 @@ from src.processor import (
     AbstractProcessorBase,
 )
 
-T = TypeVar("T")
 
-
-class Flow(BaseModel, Generic[T]):
+class Flow(BaseModel):
     name: str
     current_processor: Optional[str] = ""
     _processors: deque[AbstractProcessorBase] = deque()
 
-    def __init__(self, name: str, processors: Optional[List[Processor]]):
+    def __init__(
+        self, name: str, processors: Optional[List[AbstractProcessorBase]] = None
+    ):
         super().__init__(name=name)
         if processors is None:
             processors = []
+
+        if any(
+            not isinstance(processor, AbstractProcessorBase) for processor in processors
+        ):
+            raise ValueError(
+                "Invalid processors iterable. Must be instance of AbstractProcessorBase"
+            )
         self._processors.extend(processors)
         self._name = name
 
@@ -42,9 +48,11 @@ class Flow(BaseModel, Generic[T]):
 
     def processor(
         self, name: str
-    ) -> Callable[[TypeFunctionProcessor | TypeFunctionProcessorAsync], None]:
+    ) -> Callable[[Union[TypeFunctionProcessor, TypeFunctionProcessorAsync]], None]:
         def decorator(
-            function_processor: TypeFunctionProcessor | TypeFunctionProcessorAsync,
+            function_processor: Union[
+                TypeFunctionProcessor, TypeFunctionProcessorAsync
+            ],
         ) -> None:
             if asyncio.iscoroutinefunction(function_processor):
                 self.add_processor(
@@ -59,15 +67,16 @@ class Flow(BaseModel, Generic[T]):
         return decorator
 
     def execute(self, context: Context):
-        loop = asyncio.get_event_loop()
         if any(
-            self._run_procssor(func=processor, context=context)
+            self._run_processor(func=processor, context=context)
             for processor in self._processors
         ):
             return
 
     def _run_processor(
-        self, context: Context, func: FunctionProcessorAsync | FunctionProcessor
+        self,
+        context: Context,
+        func: Union[AbstractProcessorBase, FunctionProcessor, FunctionProcessorAsync],
     ):
         self.current_processor = func.name
         if not (asyncio.iscoroutinefunction(func.process)):
@@ -83,3 +92,6 @@ class Flow(BaseModel, Generic[T]):
 
     def get_current_processor(self) -> str:
         return self.current_processor or ""
+
+    def get_processors(self) -> deque:
+        return self._processors

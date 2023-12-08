@@ -1,9 +1,9 @@
-from typing import Generic, Optional, ParamSpec, TypeAlias
+from typing import Generic, Optional, TypeVar, TypeAlias
 
 from pydantic import BaseModel
 
-T = ParamSpec("T")
-D = ParamSpec("D")
+T = TypeVar("T")
+D = TypeVar("D")
 
 
 class Context(BaseModel, Generic[T, D]):
