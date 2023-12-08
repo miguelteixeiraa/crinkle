@@ -95,7 +95,7 @@ Crinkle has flavors for all tastes! OOP is also supported, see example:
 
 ```Python hl_lines="15-18"
 from typing import Dict, List
-from crinkle import ProcessorBase, ProcessorBaseAsync, flow, Context
+from crinkle import ProcessorBase, ProcessorBaseAsync, Flow, Context
 
 
 class Order(BaseModel):
