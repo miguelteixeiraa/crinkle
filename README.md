@@ -1,4 +1,4 @@
-# crinkle
+# crinkle - WIP
 
 **crinkle** is a simple, yet elegant, python implementation of the Chain of Responsibility pattern, inspired by the [Apache Commons Chain library](https://commons.apache.org/dormant/commons-chain/).
 
