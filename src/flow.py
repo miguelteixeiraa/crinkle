@@ -14,33 +14,29 @@ from src.processor import (
     TypeFunctionProcessor,
     FunctionProcessor,
     FunctionProcessorAsync,
-    AbstractProcessorBase,
+    ProcessorBase,
 )
 
 
 class Flow(BaseModel):
     name: str
     current_processor: Optional[str] = ''
-    _processors: deque[AbstractProcessorBase] = deque()
+    _processors: deque[ProcessorBase] = deque()
 
-    def __init__(
-        self, name: str, processors: Optional[List[AbstractProcessorBase]] = None
-    ):
+    def __init__(self, name: str, processors: Optional[List[ProcessorBase]] = None):
         super().__init__(name=name)
         if processors is None:
             processors = []
 
-        if any(
-            not isinstance(processor, AbstractProcessorBase) for processor in processors
-        ):
+        if any(not isinstance(processor, ProcessorBase) for processor in processors):
             raise ValueError(
                 'Invalid processors iterable. Must be instance of AbstractProcessorBase'
             )
         self._processors.extend(processors)
         self._name = name
 
-    def add_processor(self, processor: AbstractProcessorBase) -> None:
-        if not isinstance(processor, AbstractProcessorBase):
+    def add_processor(self, processor: ProcessorBase) -> None:
+        if not isinstance(processor, ProcessorBase):
             raise TypeError(
                 f'Invalid processor type: {type(processor)}. Expected inheritance from Processor.'
             )
@@ -76,7 +72,7 @@ class Flow(BaseModel):
     def _run_processor(
         self,
         context: Context,
-        func: Union[AbstractProcessorBase, FunctionProcessor, FunctionProcessorAsync],
+        func: Union[ProcessorBase, FunctionProcessor, FunctionProcessorAsync],
     ):
         self.current_processor = func.name
         if not (asyncio.iscoroutinefunction(func.process)):

@@ -14,7 +14,7 @@ TypeFunctionProcessor: TypeAlias = Callable[[ContextSpec], bool]
 TypeFunctionProcessorAsync: TypeAlias = Callable[[ContextSpec], Awaitable[bool]]
 
 
-class AbstractProcessorBase(ABC):
+class ProcessorBase(ABC):
     name: Optional[str] = ''
 
     @abstractmethod
@@ -22,17 +22,13 @@ class AbstractProcessorBase(ABC):
         pass
 
 
-class Processor(AbstractProcessorBase):
-    pass
-
-
-class ProcessorAsync(AbstractProcessorBase):
+class ProcessorAsync(ProcessorBase):
     @abstractmethod
     async def process(self, context: ContextSpec) -> bool:
         pass
 
 
-class FunctionProcessor(Processor):
+class FunctionProcessor(ProcessorBase):
     def __init__(self, func: TypeFunctionProcessor, name: Optional[str] = ''):
         self.func = func
         self.name = name
