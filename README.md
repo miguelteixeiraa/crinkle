@@ -22,6 +22,8 @@
 
 ---
 
+> 💡 Inspired by [Apache Commons Chain](https://www.baeldung.com/apache-commons-chain)
+
 ## Requirements
 
 A recent and currently supported version of [Python](https://www.python.org/downloads/").
