@@ -12,9 +12,12 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.11"
 pydantic = "^2.5.2"
-ruff = "^0.1.7"
-pytest = "^7.4.3"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+coverage-badge = "^1.1.0"
+pytest-cov = "^4.1.0"
+ruff = "^0.1.7"
 
 [build-system]
 requires = ["poetry-core"]
