@@ -58,19 +58,7 @@ flow = Flow(name='Promotions/Discounts Flow')
 
 
 @flow.processor(name='Discounts pre-conditions Processor')
-def discounts_pre_conditions_processor(context) -> bool:
-    """
-    **context** has code autocompletion for
-    class Context(BaseModel, Generic[T, D]):
-        state: T
-        additional_data: Optional[D]
-
-    which in this case is:
-
-    class Context:
-        state: Order
-        additional_data: Dict
-    """
+def discounts_pre_conditions_processor(context: Context[Order, Dict]) -> bool:
     if context.state.loyalty:
         return False  # Go to next processor
 
@@ -78,14 +66,14 @@ def discounts_pre_conditions_processor(context) -> bool:
 
 
 @flow.processor(name='Manufacturer Coupons Processor')
-def manufacturer_coupons_processor(context) -> bool:
+def manufacturer_coupons_processor(context: Context[Order, Dict]) -> bool:
     # do stuff with context
     return False  # Go to next processor
 
 
 # Async is also supported
 @flow.processor(name='Buy one get one Processor')
-async def bogo_processor(context) -> bool:
+async def bogo_processor(context: Context[Order, Dict]) -> bool:
     # do stuff with context
     return False  # This is the last processor, so end of flow
 
