@@ -31,7 +31,8 @@ A recent and currently supported version of [Python](https://www.python.org/down
 ## Installation
 
 ```console
-$ pip install crinkle
+$ # NOT PUPLISHED YET
+$ # pip install crinkle
 ```
 
 ## Example
