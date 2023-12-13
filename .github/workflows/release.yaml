@@ -35,4 +35,5 @@ jobs:
         with:
           tag_name: "v${{ inputs.next-tag }}"
           body: "${{ steps.generate-release-notes.outputs.release-notes }}"
+          token: ${{ github.token }}
 
