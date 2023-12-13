@@ -31,8 +31,8 @@ jobs:
         uses: miguelteixeiraa/release-notes-from-pullrequests-action@main
         with:
           next-tag: ${{ inputs.next-tag }}
-      - name: Release
-        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844
+      - uses: ncipollo/release-action@v1
         with:
-          tag_name: "v${{ inputs.next-tag }}"
+          tag: "v${{ inputs.next-tag }}"
+          commit: ${{ github.sha }}
           body: ${{ steps.generate-release-notes.outputs.release-notes }}
