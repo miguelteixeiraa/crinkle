@@ -34,7 +34,7 @@ jobs:
         with:
           next-tag: ${{ inputs.next-tag }}
       - name: Publish to PyPI
-        run:
+        run: |
           poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
           poetry publish
       - name: Create GitHub Release
