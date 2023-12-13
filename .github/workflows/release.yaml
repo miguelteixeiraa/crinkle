@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      next-tag:
+        type: string
+        description: The release tag
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - uses: actions/checkout@7cdaf2fbc075e6f3b9ca94cfd6cec5adc8a75622 #v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c #v5
+        with:
+          python-version: 3.11
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@93ada01c735cc8a383ce0ce2ae205a21c415379b #v1
+        with:
+          version: latest
+          virtualenvs-create: false
+      - name: Generate Release Notes
+        id: generate-release-notes
+        uses: miguelteixeiraa/release-notes-from-pullrequests-action@main
+        with:
+          next-tag: ${{ inputs.next-tag }}
+      - name: Test
+        run: echo ${{ steps.generate-release-notes.outputs.release-notes }}
+
