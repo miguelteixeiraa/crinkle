@@ -31,9 +31,8 @@ jobs:
         uses: miguelteixeiraa/release-notes-from-pullrequests-action@main
         with:
           next-tag: ${{ inputs.next-tag }}
-      - uses: miguelteixeiraa/tag-and-release@master
+      - name: Release
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844
         with:
           tag_name: "v${{ inputs.next-tag }}"
-          body: "${{ steps.generate-release-notes.outputs.release-notes }}"
-          token: ${{ github.token }}
-
+          body: ${{ steps.generate-release-notes.outputs.release-notes }}
