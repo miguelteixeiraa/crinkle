@@ -33,7 +33,12 @@ jobs:
         uses: miguelteixeiraa/release-notes-from-pullrequests-action@main
         with:
           next-tag: ${{ inputs.next-tag }}
-      - uses: ncipollo/release-action@6c75be85e571768fa31b40abf38de58ba0397db5
+      - name: Publish to PyPI
+        run:
+          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+          poetry publish
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@6c75be85e571768fa31b40abf38de58ba0397db5
         with:
           tag: "v${{ inputs.next-tag }}"
           commit: ${{ github.sha }}
