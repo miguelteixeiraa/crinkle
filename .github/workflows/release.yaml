@@ -31,7 +31,7 @@ jobs:
         uses: miguelteixeiraa/release-notes-from-pullrequests-action@main
         with:
           next-tag: ${{ inputs.next-tag }}
-      - uses: miguelteixeiraa/tag-and-release@main
+      - uses: miguelteixeiraa/tag-and-release@master
         with:
           tag_name: "v${{ inputs.next-tag }}"
           body: "${{ steps.generate-release-notes.outputs.release-notes }}"
