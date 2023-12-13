@@ -26,5 +26,5 @@ jobs:
           virtualenvs-create: false
       - name: Install dependencies
         run: poetry install
-      - name: Run Format check
+      - name: Run tests
         run: poetry run pytest
