@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crinkle"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 authors = ["Miguel Teixeira <miguel.teixeira@poli.ufrj.br>"]
 license = "MIT"
