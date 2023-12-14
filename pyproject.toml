@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crinkle"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Miguel Teixeira <miguel.teixeira@poli.ufrj.br>"]
 license = "MIT"
@@ -10,7 +10,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.7.0"
 pydantic = "^2.5.2"
 
 [tool.poetry.group.dev.dependencies]
