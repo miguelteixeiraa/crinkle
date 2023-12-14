@@ -49,7 +49,7 @@ class Flow(BaseModel):
             function_processor: Union[
                 TypeFunctionProcessor, TypeFunctionProcessorAsync
             ],
-        ) -> None:
+        ) -> Union[TypeFunctionProcessor, TypeFunctionProcessorAsync]:
             if asyncio.iscoroutinefunction(function_processor):
                 self.add_processor(
                     processor=FunctionProcessorAsync(func=function_processor, name=name)
@@ -59,6 +59,7 @@ class Flow(BaseModel):
             self.add_processor(
                 processor=FunctionProcessor(func=function_processor, name=name)
             )
+            return function_processor
 
         return decorator
 
